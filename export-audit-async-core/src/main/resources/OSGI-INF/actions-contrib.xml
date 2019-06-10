@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="org.nuxeo.ecm.platform.contentview.jsf.actions.export">
+
+	<extension target="org.nuxeo.ecm.platform.actions.ActionService" point="actions">
+		<action icon="/icons/email.png" id="exportPerEmail" label="Excel Export (per email)" order="200" type="link">
+			<category>CONTENT_VIEW_ACTIONS</category>
+			<properties>
+				<property name="link">
+					#{operationActionBean.doOperation('AC_ExportXlsAndAttachToEmail')}
+				</property>
+				<property name="addForm">true</property>
+				<property name="useAjaxForm">true</property>
+				<property name="ajaxSupport">true</property>
+			</properties>
+			<filter-id>contentViewShowCSVExport</filter-id>
+		</action>
+	</extension>
+
+	<extension target="org.nuxeo.ecm.core.operation.OperationServiceComponent" point="chains">
+		<chain id="AC_ExportXlsAndAttachToEmail">
+			<operation id="RunOperation">
+				<param type="string" name="id">Audit.ExportXlsAndAttachToEmail</param>
+				<param type="boolean" name="isolate">false</param>
+			</operation>
+			<operation id="WebUI.AddMessage">
+				<param type="string" name="message">expr:Your audit export is in
+					progress and will be sent to @{CurrentUser.email} as soon as it
+					been processed.</param>
+				<param type="string" name="severity">INFO</param>
+			</operation>
+		</chain>
+	</extension>
+
+</component>

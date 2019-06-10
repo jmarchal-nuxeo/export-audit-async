@@ -1,0 +1,10 @@
+Bundle-ActivationPolicy: lazy
+Bundle-ClassPath: .
+Manifest-Version: 1.0
+Bundle-Vendor: com.nuxeo.export
+Bundle-Version: 1.0.0
+Bundle-Name: export-audit-async-core
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: com.nuxeo.export.export-audit-async-core;singleton=true
+Nuxeo-Component: OSGI-INF/export-operation-contrib.xml,
+ OSGI-INF/actions-contrib.xml
